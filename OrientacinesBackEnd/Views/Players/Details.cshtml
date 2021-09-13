@@ -1,0 +1,61 @@
+@model TrallyRally.Models.Player
+
+@{ ViewData["Title"] = "Details"; }
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Player details</h3>
+                </div>
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Name)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Phone)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Phone)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.StartPosition)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.StartPosition)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.StartTime)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.StartTime)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        @if (!String.IsNullOrEmpty(Model.Avatar))
+        {
+<div class="col-md-4">
+    <div class="card card-secondary">
+        <div class="card-header">
+            <h3 class="card-title">Photo</h3>
+        </div>
+        <div class="card-body">
+            <a href="~/@Model.Avatar" data-toggle="lightbox" data-title="Team photo">
+                <img src="~/@Model.Avatar" class="img-fluid mb-2" alt="Team photo" />
+            </a>
+        </div>
+    </div>
+</div>}
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_LightboxPartial");}
+}

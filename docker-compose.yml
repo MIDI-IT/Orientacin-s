@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  orientacinesbackend:
+    image: ${DOCKER_REGISTRY-}orientacinesbackend
+    build:
+      context: .
+      dockerfile: OrientacinesBackend/Dockerfile
+    environment:
+        ConnectionStrings__DefaultConnection: server=mysqldb; port=3306; database=userdb; user=testuser; password=testuser
+
+  mysqldb:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: userdb
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testuser
+    ports:
+      - "3600:3306"
